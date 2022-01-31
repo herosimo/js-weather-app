@@ -1,0 +1,21 @@
+{
+  "name": "js-weather-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel --open --port 1234",
+    "build:parcel": "parcel build ./src/index.html --public-url ./",
+    "clean": "rm -rf dist/* && rm-rf .parcel-cache/*",
+    "build": "npm run clean && npm run build:parcel",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "source": "src/index.html",
+  "browserslist": "Last 2 Chrome versions",
+  "devDependencies": {
+    "parcel": "^2.2.1"
+  }
+}
