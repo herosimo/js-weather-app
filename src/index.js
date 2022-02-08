@@ -1,9 +1,5 @@
-import { initApp } from "./app";
+import { App } from "./App";
 import { Api } from "./Api";
 
-const init = () => {
-  const api = new Api();
-  initApp(api);
-};
-
-init();
+const api = new Api();
+const app = new App(api);

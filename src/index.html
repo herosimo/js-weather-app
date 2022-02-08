@@ -7,16 +7,20 @@
     <title>Weather App</title>
   </head>
   <body>
-    <form action="" id="search">
+    <form action="" class="search">
       <input type="text" name="city-search" id="city-search" />
+      <span class="search__loading">Loading...</span>
       <button type="submit">Search</button>
     </form>
     <div class="city-list">
       <ul></ul>
     </div>
     <div class="weather-details">
-      <h1>Temanggung</h1>
-      <p>Hujan</p>
+      <span class="weather-details__loading">Loading...</span>
+      <div class="weather-details__content">
+        <h1>Temanggung</h1>
+        <p>Hujan</p>
+      </div>
     </div>
     <script type="module" src="index.js"></script>
   </body>
