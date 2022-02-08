@@ -18,4 +18,15 @@ export class Api {
     const data = await res.json();
     return data;
   }
+
+  async callAirPollution(lat, lon) {
+    const res = await fetch(
+      `${this.API_URL}data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${this.API_KEY}`
+    );
+    console.log("res", res);
+
+    const data = await res.json();
+    console.log("data", data);
+    return data;
+  }
 }
