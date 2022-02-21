@@ -3,25 +3,124 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.scss" />
     <title>Weather App</title>
   </head>
   <body>
-    <form action="" class="search">
-      <input type="text" name="city-search" id="city-search" />
-      <span class="search__loading">Loading...</span>
-      <button type="submit">Search</button>
-    </form>
-    <div class="city-list">
-      <ul></ul>
-    </div>
-    <div class="weather-details">
-      <span class="weather-details__loading">Loading...</span>
-      <div class="weather-details__content">
-        <h1>Temanggung</h1>
-        <p>Hujan</p>
+    <div class="container">
+      <div class="left">
+        <div class="left__top">
+          <h1>TheWeather</h1>
+          <img src="./search.svg" alt="Search Icon" />
+        </div>
+
+        <div class="left__bottom">
+          <div class="left__bottom__temp">
+            <span>40'</span>
+            <div>
+              <h2>Rain</h2>
+              <p>Light rain</p>
+            </div>
+          </div>
+          <p class="left__bottom__fl">Feels like 38'</p>
+          <div class="divider"></div>
+          <div class="left__bottom__footer">
+            <p>06:09 - Monday, 9 Sep 2019</p>
+            <p>Yogyakarta, Indonesia</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <h2>Weather information</h2>
+        <ul class="right__details">
+          <li>
+            <span>Precipitation</span>
+            <span>50%</span>
+          </li>
+          <li>
+            <span>Pressure</span>
+            <span>50%</span>
+          </li>
+          <li>
+            <span>Humidity</span>
+            <span>50%</span>
+          </li>
+          <li>
+            <span>UVI</span>
+            <span>50%</span>
+          </li>
+          <li>
+            <span>Clouds</span>
+            <span>50%</span>
+          </li>
+          <li>
+            <span>VIsibility</span>
+            <span>50%</span>
+          </li>
+          <li>
+            <span>Wind speed</span>
+            <span>50%</span>
+          </li>
+          <li>
+            <span>Wind direction</span>
+            <span>50%</span>
+          </li>
+        </ul>
+
+        <h2>Next hours</h2>
+        <ul>
+          <li>
+            <span>14:00</span>
+            <span>icon here</span>
+            <span>32'</span>
+          </li>
+        </ul>
+
+        <h2>Upcoming days</h2>
+        <ul>
+          <li>
+            <span>Sunday, 9 Sept 2022</span>
+            <span>icon here</span>
+            <span>32'/42'</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Form search -->
+      <div class="modal">
+        <div class="modal__container">
+          <h2>Find a location</h2>
+
+          <form action="" class="search">
+            <div class="search__input">
+              <input type="text" name="city-search" id="city-search" />
+              <div class="search__loading loading-wrapper">
+                <div class="loading"></div>
+              </div>
+            </div>
+            <button type="submit">Search</button>
+          </form>
+          <div class="city-list">
+            <ul>
+              <li>Tes</li>
+            </ul>
+          </div>
+          <!-- <div class="weather-details">
+            <div class="weather-details__loading loading-wrapper">
+              <div class="loading"></div>
+            </div>
+            <div class="weather-details__content">
+              <h1>Temanggung</h1>
+              <p>Hujan</p>
+            </div>
+          </div> -->
+
+          <div class="close"></div>
+        </div>
       </div>
     </div>
+
     <script type="module" src="index.js"></script>
   </body>
 </html>
