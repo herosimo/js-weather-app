@@ -37,6 +37,8 @@ export class App {
     // this.toggleHideView(this.weatherDetailsLoading, true);
     this.toggleHideView(this.modal, true);
 
+    // check user location call
+    window.onload = () => this.checkUserLocation();
     this.searchForm.addEventListener("submit", this.onSubmitForm);
     this.searchIcon.addEventListener("click", () => this.toggleHideView(this.modal, false));
     this.closeIcon.addEventListener("click", () => this.toggleHideView(this.modal, true));
@@ -46,16 +48,58 @@ export class App {
     element.classList.toggle("hide", hide);
   }
 
-  onClickCity = async (e) => {
-    // this.toggleHideView(this.weatherDetailsLoading, false);
+  checkUserLocation() {
+    const onSuccess = async (data) => {
+      let loc = await this.api.callGeocoding("reverse", {
+        lat: data.coords.latitude,
+        lon: data.coords.longitude,
+      });
 
-    const oneCallData = await this.api.callOneCall(e.target.dataset.lat, e.target.dataset.lon);
-    const airPollutionData = await this.api.callAirPollution(
-      e.target.dataset.lat,
-      e.target.dataset.lon
-    );
-    // console.log("a", oneCallData);
-    console.log(airPollutionData);
+      let newData = {
+        coords: {
+          latitude: data.coords.latitude,
+          longitude: data.coords.longitude,
+          city: loc[0].name,
+          state: loc[0].state,
+          country: loc[0].country,
+        },
+      };
+
+      this.changeCity(newData);
+    };
+
+    const onFail = () => {
+      // Default location when user don't allow geolocation
+      const defaultData = {
+        coords: {
+          latitude: "51.5073219",
+          longitude: "-0.1276474",
+          city: "London",
+          state: "England",
+          country: "GB",
+        },
+      };
+
+      this.changeCity(defaultData);
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(onSuccess, onFail);
+    } else {
+      onFail();
+    }
+  }
+
+  changeCity = async (data) => {
+    // this.toggleHideView(this.weatherDetailsLoading, false);
+    let lat = data.target?.dataset?.lat || data.coords?.latitude;
+    let lon = data.target?.dataset?.lon || data.coords?.longitude;
+    let city = data.target?.dataset?.city || data.coords?.city;
+    let state = data.target?.dataset?.state || data.coords?.state;
+    let country = data.target?.dataset?.country || data.coords?.country;
+
+    const oneCallData = await this.api.callOneCall(lat, lon);
+    const airPollutionData = await this.api.callAirPollution(lat, lon);
 
     // Format time to always have 2 digits
     const formatTime = (time) => {
@@ -76,7 +120,7 @@ export class App {
     })}, ${date.getDate()} ${date.toLocaleDateString("en-US", {
       month: "long",
     })} ${date.getFullYear()}`;
-    this.leftScreenLocation.innerText = `${e.target.dataset.name}, ${e.target.dataset.state}, ${e.target.dataset.country}`;
+    this.leftScreenLocation.innerText = `${city}, ${state}, ${country}`;
 
     // Change right screen value
     let visibility = oneCallData.current.visibility / 1000;
@@ -139,19 +183,19 @@ export class App {
     this.toggleHideView(this.searchLoading, false);
     this.cityList.firstElementChild.innerHTML = "";
 
-    const locations = await this.api.callGeocoding(e.target[0].value);
+    const locations = await this.api.callGeocoding("direct", { city: e.target[0].value });
 
     if (locations.length > 0) {
       let elements = "";
 
       locations.forEach((location) => {
-        elements += `<li data-lon="${location.lon}" data-lat="${location.lat}" data-name="${location.name}" data-state="${location.state}" data-country="${location.country}" class="city">${location.name}, ${location.state}, ${location.country}</li>`;
+        elements += `<li data-lon="${location.lon}" data-lat="${location.lat}" data-city="${location.name}" data-state="${location.state}" data-country="${location.country}" class="city">${location.name}, ${location.state}, ${location.country}</li>`;
       });
 
       this.cityList.firstElementChild.innerHTML = elements;
 
       const cities = document.querySelectorAll(".city");
-      cities.forEach((city) => city.addEventListener("click", this.onClickCity));
+      cities.forEach((city) => city.addEventListener("click", this.changeCity));
       this.toggleHideView(this.cityList, false);
     } else {
       alert("no result");

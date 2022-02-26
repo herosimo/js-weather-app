@@ -2,11 +2,24 @@ export class Api {
   API_KEY = "10de9c34a8e3607e1892740e51edccca";
   API_URL = "http://api.openweathermap.org/";
 
-  async callGeocoding(city) {
-    const res = await fetch(
-      `${this.API_URL}/geo/1.0/direct?q=${city}&limit=5&appid=${this.API_KEY}`
-    );
-    const data = await res.json();
+  async callGeocoding(mode, loc) {
+    let res, data;
+    switch (mode) {
+      case "direct":
+        res = await fetch(
+          `${this.API_URL}/geo/1.0/direct?q=${loc.city}&limit=5&appid=${this.API_KEY}`
+        );
+        data = await res.json();
+        break;
+
+      case "reverse":
+        res = await fetch(
+          `${this.API_URL}/geo/1.0/reverse?lat=${loc.lat}&lon=${loc.lon}&limit=5&appid=${this.API_KEY}`
+        );
+        data = await res.json();
+        break;
+    }
+
     return data;
   }
 
@@ -23,10 +36,8 @@ export class Api {
     const res = await fetch(
       `${this.API_URL}data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${this.API_KEY}`
     );
-    console.log("res", res);
 
     const data = await res.json();
-    console.log("data", data);
     return data;
   }
 }
