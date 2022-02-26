@@ -41,7 +41,12 @@ export class App {
     window.onload = () => this.checkUserLocation();
     this.searchForm.addEventListener("submit", this.onSubmitForm);
     this.searchIcon.addEventListener("click", () => this.toggleHideView(this.modal, false));
-    this.closeIcon.addEventListener("click", () => this.toggleHideView(this.modal, true));
+
+    this.modal.addEventListener("click", (e) => {
+      if (e.target.matches(".close") || !e.target.closest(".modal__container")) {
+        this.toggleHideView(this.modal, true);
+      }
+    });
   }
 
   toggleHideView(element, hide) {
@@ -69,7 +74,7 @@ export class App {
     };
 
     const onFail = () => {
-      // Default location when user don't allow geolocation
+      // Default location when user doesn't allow geolocation
       const defaultData = {
         coords: {
           latitude: "51.5073219",
