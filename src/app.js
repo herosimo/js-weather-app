@@ -10,6 +10,7 @@ export class App {
     this.modal = document.querySelector(".modal");
     this.cityList = document.querySelector(".city-list");
     this.loadingRoot = document.querySelector(".loading-root");
+    this.container = document.querySelector(".container");
     // this.weatherDetails = document.querySelector(".weather-details__content");
     // this.weatherDetailsLoading = document.querySelector(".weather-details__loading");
 
@@ -110,6 +111,10 @@ export class App {
 
     const oneCallData = await this.api.callOneCall(lat, lon);
     const airPollutionData = await this.api.callAirPollution(lat, lon);
+
+    const bgPhoto = await this.api.searchPhoto(state);
+
+    this.container.style.backgroundImage = `linear-gradient(rgba(87, 87, 87, 0.5), rgba(87, 87, 87, 0.5)), url("${bgPhoto.results[0].urls.regular}")`;
 
     // Format time to always have 2 digits
     const formatTime = (time) => {
