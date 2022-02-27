@@ -28,7 +28,7 @@ export class Api {
 
   async callOneCall(lat, lon) {
     const res = await fetch(
-      `${this.OWM_API_URL}data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=alerts&units=metric&appid=${this.OWM_API_KEY}`
+      `${this.OWM_API_URL}data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=alerts,minutely&units=metric&appid=${this.OWM_API_KEY}`
     );
 
     const data = await res.json();

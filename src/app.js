@@ -143,7 +143,7 @@ export class App {
 
     let airPollutionDataVal = airPollutionData.list[0].main.aqi;
     const airPollutionDataDetails = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];
-    this.rightScreenAqi.innerText = `${airPollutionDataVal} - ${
+    this.rightScreenAqi.innerText = `${airPollutionDataVal} / ${
       airPollutionDataDetails[airPollutionDataVal - 1]
     }`;
     this.rightScreenHumidity.innerText = `${oneCallData.current.humidity}%`;
@@ -162,8 +162,7 @@ export class App {
       nextHourELements += `
       <li>
         <span>${formatTime(date.getHours())}:${formatTime(date.getMinutes())}</span>
-        <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png"/>
-        <span>${data.temp}°C</span>
+        <span>${data.weather[0].main} / ${data.temp}°C</span>
       </li>
       `;
     });
@@ -178,15 +177,16 @@ export class App {
       nextDayELements += `
       <li>
         <span>${date.toLocaleDateString("en-US", {
-          weekday: "short",
+          weekday: "long",
         })}, ${date.getDate()} ${date.toLocaleDateString("en-US", {
-        month: "short",
+        month: "long",
       })} ${date.getFullYear()}</span>
-        <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png"/>
-        <span>${data.temp.min}°C/${data.temp.max}°C</span>
+        <span>${data.weather[0].main} / ${data.temp.min}°C - ${data.temp.max}°C</span>
       </li>
       `;
     });
+
+    console.log(oneCallData);
 
     this.rightScreenNextDays.innerHTML = nextDayELements;
     // this.toggleHideView(this.weatherDetailsLoading, true);

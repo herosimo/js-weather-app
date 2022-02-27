@@ -14,6 +14,11 @@ html {
   @media screen and (max-width: 1440px) {
     font-size: 0.75rem;
   }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 900;
+  }
 }
 
 .container {
@@ -25,6 +30,11 @@ html {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  @media screen and (max-width: 1025px) {
+    grid-template-columns: 1fr;
+    background-attachment: fixed;
+  }
 }
 
 .left {
@@ -35,14 +45,25 @@ html {
   padding: 3rem 3.75rem;
   color: white;
 
+  @media screen and (max-width: 1025px) {
+    min-height: 0;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 2rem 1.25rem 0 1.25rem;
+  }
+
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    h1 {
-      font-size: 2rem;
-      font-weight: 900;
+    @media screen and (max-width: 1025px) {
+      margin-bottom: 40vh;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin-bottom: 20vh;
     }
 
     img {
@@ -57,26 +78,47 @@ html {
       align-items: center;
       margin-bottom: 0.625rem;
 
+      @media screen and (max-width: 767px) {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
       span {
-        font-size: 12.5rem;
-        font-weight: 200;
+        font-size: 10rem;
+        font-weight: 500;
         margin-right: 40px;
+
+        @media screen and (max-width: 767px) {
+          font-size: 6rem;
+        }
       }
 
       h2 {
-        font-size: 3rem;
-        font-weight: 400;
-        margin-bottom: 0.25rem;
+        font-size: 2.5rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+
+        @media screen and (max-width: 767px) {
+          font-size: 2.25rem;
+        }
       }
 
       p {
-        font-size: 2.5rem;
+        text-transform: capitalize;
+        font-size: 2rem;
+        font-weight: 300;
+
+        @media screen and (max-width: 767px) {
+          font-size: 1.5rem;
+        }
       }
     }
 
     &__fl {
-      font-size: 2rem;
+      font-size: 1.5rem;
       margin-bottom: 3rem;
+      font-weight: 300;
     }
 
     &__footer {
@@ -84,8 +126,18 @@ html {
       justify-content: space-between;
       margin-top: 3rem;
 
+      @media screen and (max-width: 767px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       p {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
+        font-weight: 300;
+
+        @media screen and (max-width: 767px) {
+          margin-bottom: 0.75rem;
+        }
       }
     }
   }
@@ -100,6 +152,17 @@ html {
   border-radius: 1.25rem;
   margin: 2rem 2rem 2rem 0;
   padding: 3rem;
+
+  @media screen and (max-width: 1025px) {
+    margin: 2.5rem 0rem 0rem 0;
+    border-radius: 2.5rem 2.5rem 0 0;
+    padding: 4rem 3rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 2.5rem 1.25rem;
+    border-radius: 1.25rem 1.25rem 0 0;
+  }
 
   &::-webkit-scrollbar {
     width: 17px;
@@ -119,30 +182,49 @@ html {
   }
 
   h2 {
-    color: #101010;
-    font-size: 1.75rem;
-    font-weight: 400;
-    margin-bottom: 2rem;
+    color: #404040;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
   }
 
   ul {
     list-style: none;
     padding: 0;
 
+    &.right__nextDays {
+      li {
+        flex-direction: column;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        span {
+          margin-bottom: 0.5rem;
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
     li {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 1.25rem;
-      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+      font-weight: 300;
       color: #404040;
 
       &:last-of-type {
-        margin-bottom: 3rem;
+        margin-bottom: 2.5rem;
       }
 
       span {
         &:last-of-type {
-          font-weight: 600;
+          font-weight: 500;
         }
       }
     }
@@ -251,7 +333,7 @@ html {
   width: 100%;
   height: 2px;
   border-radius: 10px;
-  background-color: white;
+  background-color: #ffffff80;
 }
 
 .loading {
