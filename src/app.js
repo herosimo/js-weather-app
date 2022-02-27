@@ -9,6 +9,7 @@ export class App {
     this.closeIcon = document.querySelector(".close");
     this.modal = document.querySelector(".modal");
     this.cityList = document.querySelector(".city-list");
+    this.loadingRoot = document.querySelector(".loading-root");
     // this.weatherDetails = document.querySelector(".weather-details__content");
     // this.weatherDetailsLoading = document.querySelector(".weather-details__loading");
 
@@ -36,6 +37,7 @@ export class App {
     // this.toggleHideView(this.weatherDetails, true);
     // this.toggleHideView(this.weatherDetailsLoading, true);
     this.toggleHideView(this.modal, true);
+    this.toggleHideView(this.loadingRoot, true);
 
     // check user location call
     window.onload = () => this.checkUserLocation();
@@ -96,6 +98,9 @@ export class App {
   }
 
   changeCity = async (data) => {
+    this.toggleHideView(this.modal, true);
+    this.toggleHideView(this.loadingRoot, false);
+
     // this.toggleHideView(this.weatherDetailsLoading, false);
     let lat = data.target?.dataset?.lat || data.coords?.latitude;
     let lon = data.target?.dataset?.lon || data.coords?.longitude;
@@ -181,6 +186,8 @@ export class App {
     this.rightScreenNextDays.innerHTML = nextDayELements;
     // this.toggleHideView(this.weatherDetailsLoading, true);
     // this.toggleHideView(this.weatherDetails, false);
+
+    this.toggleHideView(this.loadingRoot, true);
   };
 
   onSubmitForm = async (e) => {
