@@ -234,6 +234,8 @@ html {
 .modal {
   position: absolute;
   z-index: 2;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -247,6 +249,15 @@ html {
     background-color: white;
     padding: 3rem;
     border-radius: 1.25rem;
+
+    @media screen and (max-width: 1024px) {
+      width: 75vw;
+    }
+
+    @media screen and (max-width: 767px) {
+      width: calc(100vw - 2.5rem);
+      padding: 2rem 1.5rem;
+    }
 
     h2 {
       color: #101010;
@@ -356,14 +367,23 @@ html {
 
 .close {
   position: absolute;
-  top: 2.25rem;
+  top: 2rem;
   right: 3rem;
   cursor: pointer;
+
+  @media screen and (max-width: 767px) {
+    top: 1.5rem;
+    right: 1.25rem;
+  }
 
   &::after {
     display: inline-block;
     content: "\00d7";
     font-size: 2.5rem;
+
+    @media screen and (max-width: 767px) {
+      font-size: 2rem;
+    }
   }
 }
 
