@@ -181,7 +181,7 @@ export class App {
         })}, ${date.getDate()} ${date.toLocaleDateString("en-US", {
         month: "long",
       })} ${date.getFullYear()}</span>
-        <span>${data.weather[0].main} / ${data.temp.min}°C - ${data.temp.max}°C</span>
+        <span>${data.weather[0].main} / ${data.temp.min}°C / ${data.temp.max}°C</span>
       </li>
       `;
     });
