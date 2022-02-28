@@ -7,6 +7,7 @@ export class Api {
 
   async callGeocoding(mode, loc) {
     let res, data;
+
     switch (mode) {
       case "direct":
         res = await fetch(
