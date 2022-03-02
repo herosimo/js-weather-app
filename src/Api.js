@@ -1,6 +1,6 @@
 export class Api {
   OWM_API_KEY = "10de9c34a8e3607e1892740e51edccca";
-  OWM_API_URL = "http://api.openweathermap.org/";
+  OWM_API_URL = "https://api.openweathermap.org/";
 
   UN_API_KEY = "rCmYU-DnVhWNujnJdRl7OHw9R5_OnMbr9whez_VeDqk";
   UN_API_URL = "https://api.unsplash.com/";
